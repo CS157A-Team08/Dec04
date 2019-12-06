@@ -160,6 +160,19 @@ app.get("/shiftrecord/:id", (req, res) => {
   });
 });
 
+app.get("/addStaff", (req, res) => {
+  const { empID, name, phone, position, password } = req.query;
+  connection.query(
+    `INSERT INTO employee (empID,name,phone,position,password) VALUES ('${empID}','${name}','${phone}','${position}','${password}' )`,
+
+    (error, results) => {
+      if (error) {
+        return res.send(err);
+      }
+    }
+  );
+});
+
 app.get("/login", (req, res) => {
   const { name, phone } = req.query;
   connection.query(
