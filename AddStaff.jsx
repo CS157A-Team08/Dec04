@@ -97,7 +97,7 @@ class AddStaff extends Component {
               className="btn btn-outline-primary btn-lg"
               onClick={this.addStaff}
             >
-              Next
+              Add Staff
             </button>
         </Link>
         <br/>
