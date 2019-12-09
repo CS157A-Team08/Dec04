@@ -68,6 +68,8 @@ class StaffBio extends Component {
               <div/>
               <strong>Phone#: </strong>{this.state.currStaff.phone}
               <div/>
+              <strong>Employee ID#: </strong>{this.state.currStaff.empID}
+              <div/>
               <br/>
 
           </div>
@@ -86,15 +88,44 @@ class StaffBio extends Component {
             )}
           </div>
 
-          <Link to="/managestaff">
+          <Link to="/addstaff">
             <button
               type="submit"
               className="btn btn-outline-primary btn-lg"
             >
-              Manage Staff
+              Add Staff
             </button>
           </Link>
-
+          <br/>
+          <br/>
+          <Link to={{
+            pathname: "/deletestaff",
+            state: {
+              empID: this.state.currStaff.empID
+            }
+          }}>
+            <button
+              type="submit"
+              className="btn btn-outline-primary btn-lg"
+            >
+              Delete Staff
+            </button>
+          </Link>
+          <br/>
+          <br/>
+          <Link to={{
+            pathname: "/editstaff",
+            state: {
+              empID: this.state.currStaff.empID
+            }
+          }}>
+            <button
+              type="submit"
+              className="btn btn-outline-primary btn-lg"
+            >
+              Edit Staff
+            </button>
+          </Link>
         </div>
 
 
