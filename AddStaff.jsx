@@ -5,14 +5,10 @@ import { Link } from "react-router-dom";
 
 class AddStaff extends Component {
   state = {
-    empID: "",
     name: "",
     phone: "",
     position: "",
     password: ""
-  };
-  handleEmpIDChange = event => {
-    this.setState({ empID: event.target.value });
   };
   handleNameChange = event => {
     this.setState({ name: event.target.value });
@@ -28,8 +24,7 @@ class AddStaff extends Component {
   };
   addStaff = () => {
     fetch(
-      `http://localhost:4000/addStaff?empID=${this.state.empID}&name=${this.state.name}&phone=${this.state.phone}
-      &position=${this.state.position}&password=${this.state.password}`
+      `http://localhost:4000/addStaff?name=${this.state.name}&phone=${this.state.phone}&position=${this.state.position}&password=${this.state.password}`
     );
   };
 
@@ -38,16 +33,6 @@ class AddStaff extends Component {
       <div style={{ position: "absolute", left: "40%", top: "30%" }}>
         <h3>Add new staff information:</h3>
         <br/>
-        <Form.Group controlId="formBasicEmail">
-          <Form.Label>Employee ID</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="ID number"
-            value={this.state.empID}
-            onChange={this.handleEmpIDChange}
-          />
-        </Form.Group>
-
         <Form>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Name</Form.Label>
@@ -98,6 +83,14 @@ class AddStaff extends Component {
               onClick={this.addStaff}
             >
               Add Staff
+            </button>
+        </Link>
+        <Link to="/staffpage">
+            <button
+              type="submit"
+              className="btn btn-outline-primary btn-lg"
+            >
+              Cancel
             </button>
         </Link>
         <br/>
