@@ -74,16 +74,16 @@ connection.query(menu, function(err, results, fields) {
   });
 
 
-    connection.query(topten, function(err, results, fields) {
-      if (err) {
-        console.log(err.message);
-      }
-      });
-      connection.query(shiftrecord, function(err, results, fields) {
-        if (err) {
-          console.log(err.message);
-        }
-        });
+connection.query(topten, function(err, results, fields) {
+  if (err) {
+    console.log(err.message);
+  }
+  });
+  connection.query(shiftrecord, function(err, results, fields) {
+    if (err) {
+      console.log(err.message);
+    }
+    });
 
 connection.query(employee, function(err, results, fields) {
     if (err) {
@@ -161,16 +161,45 @@ app.get("/shiftrecord/:id", (req, res) => {
 });
 
 app.get("/addStaff", (req, res) => {
-  const { empID, name, phone, position, password } = req.query;
+  const { name, phone, position, password } = req.query;
   connection.query(
-    `INSERT INTO employee (empID,name,phone,position,password) VALUES ('${empID}','${name}','${phone}','${position}','${password}' )`,
+    `INSERT INTO employee (name,phone,position,password) VALUES ('${name}','${phone}','${position}','${password}' )`,
 
     (error, results) => {
       if (error) {
-        return res.send(err);
+        return res.send(error);
+      } else {
+        return res.json({ data: "SUCCESS" });
       }
-    }
-  );
+    });
+});
+
+app.get("/deleteStaff/:id", (req, res) => {
+  connection.query(
+    "DELETE FROM employee WHERE empID = " + req.params.id,
+    (error, results) => {
+      if (error) {
+        console.log("Delete not successful")
+        return res.send(err);
+      } else {
+        return res.json({ data: "SUCCESS" });
+      }
+    });
+});
+
+//UPDATE employee SET name = "Robo Tom 2.0", phone = 1234567890, position = "Line Cook", password = "ch33$e" WHERE empID = 4
+app.get("/editStaff", (req, res) => {
+  const { empID, name, phone, position, password } = req.query;
+  connection.query(
+    `UPDATE employee SET name='${name}', phone=${phone}, position='${position}', password='${password}' WHERE empID=${empID}`,
+
+    (error, results) => {
+      if (error) {
+        return res.send(error);
+      } else {
+        return res.json({ data: "SUCCESS" });
+      }
+    });
 });
 
 app.get("/login", (req, res) => {
@@ -181,6 +210,8 @@ app.get("/login", (req, res) => {
     (error, results) => {
       if (error) {
         return res.send(err);
+      } else {
+        return res.json({ data: "SUCCESS"});
       }
     }
   );
