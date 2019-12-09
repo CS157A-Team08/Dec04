@@ -8,7 +8,8 @@ import ManageLogin from "./ManageLogin";
 import ManageMenu from "./ManageMenu";
 import StaffBio from "./StaffBio";
 import AddStaff from "./AddStaff";
-
+import DeleteStaff from "./DeleteStaff";
+import EditStaff from "./EditStaff";
 import StaffLogin from "./StaffLogin";
 
 class App extends Component {
@@ -22,7 +23,9 @@ class App extends Component {
           <Route path="/main" component={MainPage}></Route>
           <Route path="/staff" component={StaffLogin}></Route>
           <Route path="/staffpage" component={StaffBio}></Route>
-          <Route path="/managestaff" component={AddStaff}></Route>
+          <Route path="/addstaff" component={AddStaff}></Route>
+          <Route path="/deletestaff" component={DeleteStaff}></Route>
+          <Route path="/editstaff" component={EditStaff}></Route>
           <Route path="/managelogin" component={ManageLogin}></Route>
           <Route path="/managemenu" component={ManageMenu}></Route>
           <Route path="/order" component={SingleOrder}></Route>
